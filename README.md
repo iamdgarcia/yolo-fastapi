@@ -1,7 +1,3 @@
-Here's the `README.md` translated into English:
-
----
-
 # Object Detection API with YOLOv8 and FastAPI 🚀
 
 Welcome to the **Object Detection API** built with **YOLOv8** and **FastAPI**. This API allows real-time object detection in images and is designed to be deployed on the cloud using **DigitalOcean**, with automated deployment through **GitHub Actions**.
