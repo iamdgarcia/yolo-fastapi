@@ -1,0 +1,27 @@
+name: Deploy to DigitalOcean
+on:
+  push:
+    branches:
+
+      - main
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.x'
+    - name: Install Poetry and dependencies
+      run: |
+        pip install poetry
+        poetry install
+    - name: Deploy to DigitalOcean
+      env:
+        HOST: ${{ secrets.DIGITALOCEAN_HOST }}
+        USER: ${{ secrets.DIGITALOCEAN_USER }}
+      run: |
+        scp -r . $USER@$HOST:/ruta/del/proyecto
+        ssh $USER@$HOST "cd /ruta/del/proyecto && poetry install && pm2 restart all"
